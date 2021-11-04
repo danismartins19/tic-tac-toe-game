@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+header{
+    margin: 50px 0;
+}
+
+#newgame{
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-family: Cambria, sans-serif;
+    font-size: 1rem;
+    background-color:rgb(66, 62, 62);
+    color: rgb(255, 255, 255);
+}
+
+#newgame:hover{
+    cursor: pointer;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lettering{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+#playertime, #valuetime{
+    font-size: 1.5rem;
+    font-family: Cambria,sans-serif;
+}
+
+.board{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    width: auto;
+    margin-top: 50px;
+}
+
+.line{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+}
+
+.l1, .l2{
+    border: none;
+    border-bottom: solid 2px black;
+}
+
+#b1, #b4, #b7, #b2, #b5, #b8{
+    border: none;
+    border-right: solid 2px black;
+}
+
+.block{
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: Cambria,sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
