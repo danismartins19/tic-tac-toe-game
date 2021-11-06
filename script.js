@@ -4,10 +4,17 @@ var options = [
     ['-','-','-'],
     ['-','-','-']
 ];
+var winCountX = 0;
+var winCountO = 0;
 var jogadas = 0;
 var win = false;
 var nextPlayer = document.getElementById('valuetime');
     nextPlayer.innerHTML = player;
+
+var modalWin = document.getElementById('modal');
+    modalWin.style.display = 'none';
+
+var msgVencedor = document.getElementById('msgVencedor');
 
 var buttonNewGame = document.getElementById('newgame');
 
@@ -18,11 +25,12 @@ buttonNewGame.addEventListener("click", ()=>{
         ['-','-','-'],
         ['-','-','-']
     ];
-
+    modalWin.style.display = "none";
     player ="O";
     jogadas = 0;
     win = false;
     nextPlayer.innerHTML = player;
+    nextPlayer.style.color = 'blue';
 
     for (let i of blocks){
         i.innerHTML = "";
@@ -50,7 +58,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[0][0] === "-"){
             options[0][0] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -58,7 +66,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[0][1] === "-"){
             options[0][1] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -66,7 +74,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[0][2] === "-"){
             options[0][2] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -74,7 +82,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[1][0] === "-"){
             options[1][0] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -82,7 +90,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[1][1] === "-"){
             options[1][1] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -90,7 +98,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[1][2] === "-"){
             options[1][2] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -98,7 +106,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[2][0] === "-"){
             options[2][0] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -106,7 +114,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[2][1] === "-"){
             options[2][1] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -114,7 +122,7 @@ const guardaJogada = (idBlock ,  player) =>{
         if (options[2][2] === "-"){
             options[2][2] = player;
             block.innerHTML = player;
-            trocarPlayer();
+            trocarPlayer(block);
         }
     }//
 
@@ -122,17 +130,20 @@ const guardaJogada = (idBlock ,  player) =>{
 
 }
 
-const trocarPlayer = () =>{
+const trocarPlayer = (item) =>{
     jogadas ++;
     verificaGanhador();
-    console.log(jogadas)
 
     if(player==="O"){
+        nextPlayer.style.color = 'red';
+        item.style.color = 'blue';
         player = "X";
         nextPlayer.innerHTML = player;
     } else {
+        item.style.color = 'red';
+        nextPlayer.style.color = 'blue';
         player = "O";
-        nextPlayer.innerHTML = player;
+        nextPlayer.innerHTML = player;  
     }
 }
 
@@ -155,8 +166,11 @@ const verificaGanhador = () =>{
             ||
             (options[2][0] === "O" && options[1][1] === "O" && options[0][2] === "O")
         )
-    {
-        console.log("o venceu");
+    {   
+        modalWin.style.display ="block";
+        msgVencedor.innerHTML = "O Jogador 'O' venceu!";
+        winCountO++;
+        setWinner();
         win = true;
     } else if (
             (options[0][0] === "X" && options[0][1] === "X" && options[0][2] === "X")
@@ -176,13 +190,18 @@ const verificaGanhador = () =>{
             (options[2][0] === "X" && options[1][1] === "X" && options[0][2] === "X")
     )
     {
-        console.log("x venceu");
+        modalWin.style.display ="block";
+        msgVencedor.innerHTML = "O Jogador 'X' venceu!";
+        winCountX++;
+        setWinner();
         win = true;
     } else if (jogadas == 9){
-        console.log("Empatou");
+        modalWin.style.display ="block";
+        msgVencedor.innerHTML = "Houve um empate!";
     }
 }
 
-
-
-
+const setWinner = () =>{
+    document.getElementById("valueO").innerHTML = winCountO;
+    document.getElementById("valueX").innerHTML = winCountX;
+}
