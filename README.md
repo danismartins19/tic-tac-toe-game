@@ -5,7 +5,8 @@
 
 <p align="center">
 #Deploy:
+</p> 
+ 
+#https://danismartins19.github.io/tic-tac-toe-game/
 
-### https://danismartins19.github.io/tic-tac-toe-game/
-  
-</p>
+
